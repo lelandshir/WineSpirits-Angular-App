@@ -6,6 +6,9 @@ const port = 3000;
 app.use(express.json());
 app.use(express.static(`public`));
 
+const drinksController = require(`./controllers/drinks.js`);
+app.use(`/drinks`, drinksController);
+
 mongoose.connect(`mongodb://localhost:27017/drinks`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
