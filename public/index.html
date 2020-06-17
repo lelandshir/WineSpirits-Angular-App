@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" ng-app>
+<html lang="en" dir="ltr" ng-app="myApp">
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="/js/app.css" />
@@ -10,7 +10,32 @@
     <script src="/js/app.js" charset="utf-8"></script>
     <title>DrinkUp</title>
   </head>
-  <body>
-    <h1>Hello World!</h1>
+  <body ng-controller="MyController as ctrl">
+    <h1>{{ctrl.message}}</h1>
+    <section>
+      <h3>Add Liquor:</h3>
+      <form ng-submit="addNewLiquor()">
+        <br />
+        <input
+          type="text"
+          name="brand"
+          placeholder="brand of liquor"
+          ng-model="ctrl.brand"
+        /><br />
+        <input
+          type="text"
+          name="type"
+          placeholder="type of liquor"
+          ng-model="ctrl.type"
+        /><br />
+        <input
+          type="number"
+          name="abv"
+          placeholder="alcohol by volume"
+          ng-model="ctrl.abv"
+        /><br />
+        <input type="submit" value="add beverage" />
+      </form>
+    </section>
   </body>
 </html>
