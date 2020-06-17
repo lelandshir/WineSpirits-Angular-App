@@ -13,10 +13,15 @@ app.controller(`MyController`, [
           type: this.type,
           abv: this.abv,
         },
-      }).then((response) => {
-        console.log(response);
-        this.createdDrink = response.data;
-      });
+      }).then(
+        (response) => {
+          console.log(response);
+          this.createdDrink = response.data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     };
   },
 ]);
