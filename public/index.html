@@ -13,7 +13,7 @@
   <body ng-controller="MyController as ctrl">
     <h1>{{ctrl.message}}</h1>
     <section>
-      <h3>Add Liquor:</h3>
+      <h1>Add Liquor:</h1>
       <!-- START FORM -->
       <form ng-submit="ctrl.addNewLiquor()">
         <br />
@@ -38,10 +38,18 @@
         <input type="submit" value="add beverage" />
       </form>
       <!-- END FORM -->
-
-      <ul>
-        <li ng-repeat="drink in ctrl.drinks">{{drink.brand}}</li>
-      </ul>
+      <hr />
+      <div>
+        <h1>Liquors:</h1>
+        <ul>
+          <li ng-repeat="drink in ctrl.drinks">
+            <h3>
+              {{drink.brand}}, ({{drink.type}}) -
+              <span id="avb">{{drink.abv}}% alcohol by vol.</span>
+            </h3>
+          </li>
+        </ul>
+      </div>
     </section>
   </body>
 </html>
