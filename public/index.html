@@ -14,6 +14,7 @@
     <h1>{{ctrl.message}}</h1>
     <section>
       <h3>Add Liquor:</h3>
+      <!-- START FORM -->
       <form ng-submit="ctrl.addNewLiquor()">
         <br />
         <input
@@ -36,6 +37,11 @@
         /><br />
         <input type="submit" value="add beverage" />
       </form>
+      <!-- END FORM -->
+
+      <ul>
+        <li ng-repeat="drink in ctrl.drinks">{{drink.brand}}</li>
+      </ul>
     </section>
   </body>
 </html>
