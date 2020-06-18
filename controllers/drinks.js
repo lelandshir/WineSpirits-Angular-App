@@ -23,6 +23,12 @@ router.put(`/:id`, (req, res) => {
   );
 }); //put route
 
+router.delete(`/:id`, (req, res) => {
+  Drinks.findByIdAndRemove(req.params.id, (err, deletedDrinks) => {
+    res.json(deletedDrinks);
+  });
+}); //delete route
+
 router.post("/", (req, res) => {
   Drinks.create(req.body, (err, createdDrink) => {
     res.json(createdDrink);

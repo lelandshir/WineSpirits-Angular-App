@@ -2,8 +2,10 @@ const app = angular.module(`myApp`, []);
 app.controller(`MyController`, [
   `$http`,
   function ($http) {
+    this.message = `MadShir's Wines & Spirits`;
     this.createdDrink = "";
     this.indexOfDrinksToShow = null;
+
     this.editDrink = (drink) => {
       $http({
         method: `PUT`,
@@ -16,6 +18,7 @@ app.controller(`MyController`, [
       }).then(
         (res) => {
           console.log(this.res);
+          this.getDrinks();
         },
         (err) => {
           console.log(err);
@@ -23,7 +26,22 @@ app.controller(`MyController`, [
       );
     };
 
-    this.getLiquors = () => {
+    this.deleteDrink = (drink) => {
+      $http({
+        method: `DELETE`,
+        url: `/drinks/` + drink._id,
+      }).then(
+        (res) => {
+          console.log(res);
+          this.getDrinks();
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    };
+
+    this.getDrinks = () => {
       $http({
         url: `/drinks`,
         method: `GET`,
@@ -38,7 +56,7 @@ app.controller(`MyController`, [
       );
     };
 
-    this.addNewLiquor = () => {
+    this.addNewDrink = () => {
       $http({
         url: `/drinks`,
         method: `POST`,
@@ -51,12 +69,13 @@ app.controller(`MyController`, [
         (response) => {
           console.log(response);
           this.createdDrink = response.data;
+          this.getDrinks();
         },
         (error) => {
           console.log(error);
         }
       );
     };
-    this.getLiquors();
+    this.getDrinks();
   },
 ]);

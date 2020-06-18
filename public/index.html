@@ -11,11 +11,12 @@
     <title>DrinkUp</title>
   </head>
   <body ng-controller="MyController as ctrl">
+    <h1>{{ctrl.message}}</h1>
     <div>
       <section>
         <h1>Add Liquor</h1>
         <!-- START FORM -->
-        <form ng-submit="ctrl.addNewLiquor()">
+        <form ng-submit="ctrl.addNewDrink()">
           <br />
           <input
             type="text"
@@ -47,9 +48,13 @@
           <h1>Liquors</h1>
           <ul>
             <li ng-repeat="drink in ctrl.drinks">
-              <h3>
+              <h2>
                 {{drink.brand}}, ({{drink.type}}) -
                 <span id="avb">{{drink.abv}}% abv</span>
+                <a
+                href="#"
+                ng-click="ctrl.deleteDrink(drink)">delete</a>
+                <!-- START OF EDIT FORM -->
                 <a
                 href="#"
                 ng-if="$index !== ctrl.indexOfDrinksToShow"
@@ -72,7 +77,8 @@
                     placeholder="{{drink.abv}}"/><br />
                     <input type="submit"/>
                 </form>
-              </h3>
+                    <!-- END OF EDIT FORM -->
+              </h2>
             </li>
           </ul>
         </div>
