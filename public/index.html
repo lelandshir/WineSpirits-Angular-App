@@ -11,7 +11,7 @@
     <title>DrinkUp</title>
   </head>
   <body ng-controller="MyController as ctrl">
-    <h1>{{ctrl.message}}</h1>
+    <h1 id="madShir">{{ctrl.message | uppercase}}</h1>
     <div>
       <section>
         <h1>Add Liquor</h1>
@@ -38,6 +38,11 @@
           /><br />
           <input type="submit" value="add beverage" />
         </form>
+        <button ng-click="order = 'brand'">Order By Brand</button>
+        <button ng-click="order = 'type'">Order By Type</button>
+        <br><br>
+        <h1>Search for Liquor</h1>
+        <input type="text" ng-model="search" placeholder="search for a liquor (ie; 'scotch', 'hendricks')">
       </section>
     </div>
     <!-- END FORM -->
@@ -47,7 +52,7 @@
         <div>
           <h1>Liquors</h1>
           <ul>
-            <li ng-repeat="drink in ctrl.drinks">
+            <li ng-repeat="drink in ctrl.drinks | orderBy: order | filter: search">
               <h2>
                 {{drink.brand}}, ({{drink.type}}) -
                 <span id="avb">{{drink.abv}}% abv</span>
