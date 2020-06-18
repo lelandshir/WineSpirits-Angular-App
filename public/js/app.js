@@ -2,8 +2,26 @@ const app = angular.module(`myApp`, []);
 app.controller(`MyController`, [
   `$http`,
   function ($http) {
-    // this.message = `Madshir Wines & Spirits!`;
     this.createdDrink = "";
+    this.indexOfDrinksToShow = null;
+    this.editDrink = (drink) => {
+      $http({
+        method: `PUT`,
+        url: `/drinks/` + drink._id,
+        data: {
+          brand: this.updateBrand,
+          type: this.updatedType,
+          abv: this.updatedABV,
+        },
+      }).then(
+        (res) => {
+          console.log(this.res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    };
 
     this.getLiquors = () => {
       $http({

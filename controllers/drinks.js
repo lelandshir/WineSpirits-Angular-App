@@ -12,19 +12,27 @@ const Drinks = require(`../models/drinks.js`);
 //     abv: 44,
 //   });
 // });
+router.put(`/:id`, (req, res) => {
+  Drinks.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true }, //returns the item you updated
+    (err, updatedDrink) => {
+      res.json(updatedDrink);
+    }
+  );
+}); //put route
 
 router.post("/", (req, res) => {
   Drinks.create(req.body, (err, createdDrink) => {
     res.json(createdDrink);
   });
-}); //connect to a form
+}); //post route
 
 router.get("/", (req, res) => {
   Drinks.find({}, (err, foundDrink) => {
     res.json(foundDrink);
   });
-});
-
-// router.get(`/`, (req, res) => {});
+}); //index
 
 module.exports = router;
