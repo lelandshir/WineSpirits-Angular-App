@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" ng-app="myApp">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/js/app.css" />
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"
+      charset="utf-8"
+    ></script>
+    <script src="/js/app.js" charset="utf-8"></script>
+    <title>DrinkUp</title>
+  </head>
+  <body ng-controller="MyController as ctrl">
+    <h1 id="madShir">{{ctrl.message | uppercase}}</h1>
+    <div>
+      <section>
+        <h1>Add Liquor</h1>
+        <!-- START FORM -->
+        <form ng-submit="ctrl.addNewDrink()">
+          <br />
+          <input
+            type="text"
+            name="brand"
+            placeholder="brand of liquor"
+            ng-model="ctrl.brand"
+          /><br />
+          <input
+            type="text"
+            name="type"
+            placeholder="type of liquor"
+            ng-model="ctrl.type"
+          /><br />
+          <input
+            type="number"
+            name="abv"
+            placeholder="abv"
+            ng-model="ctrl.abv"
+          /><br />
+          <input type="submit" value="add beverage" />
+        </form>
+        <button ng-click="order = 'brand'">Order By Brand</button>
+        <button ng-click="order = 'type'">Order By Type</button>
+        <br><br>
+        <h1>Search for Liquor</h1>
+        <input type="text" ng-model="search" placeholder="search for a liquor (ie; 'scotch', 'hendricks')">
+      </section>
+    </div>
+    <!-- END FORM -->
+    <!-- START MODELS DISPLAY -->
+  </div>
+      <section>
+        <div>
+          <h1>Liquors</h1>
+          <ul>
+            <li ng-repeat="drink in ctrl.drinks | orderBy: order | filter: search">
+              <h2>
+                {{drink.brand}}, ({{drink.type}}) -
+                <span id="avb">{{drink.abv}}% abv</span>
+                <a
+                href="#"
+                ng-click="ctrl.deleteDrink(drink)">delete</a>
+                <!-- START OF EDIT FORM -->
+                <a
+                href="#"
+                ng-if="$index !== ctrl.indexOfDrinksToShow"
+                ng-click="ctrl.indexOfDrinksToShow = $index">edit</a>
+                <form
+                ng-submit="ctrl.editDrink(drink)"
+                ng-if="$index===ctrl.indexOfDrinksToShow"
+                >
+                  <input
+                  type="text"
+                  ng-model="ctrl.updateBrand"
+                  placeholder="{{drink.brand}}"><br>
+                  <input
+                    type="text"
+                    ng-model="ctrl.updatedType"
+                    placeholder="{{drink.type}}"/><br />
+                  <input
+                    type="number"
+                    ng-model="ctrl.updatedABV"
+                    placeholder="{{drink.abv}}"/><br />
+                    <input type="submit"/>
+                </form>
+                    <!-- END OF EDIT FORM -->
+              </h2>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <!-- END MODELS DISPLAY -->
+    </div>
+  </body>
+</html>

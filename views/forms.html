@@ -1,0 +1,26 @@
+<section>
+  <h1>Add Liquor:</h1>
+  <!-- START FORM -->
+  <form ng-submit="ctrl.addNewLiquor()">
+    <br />
+    <input
+      type="text"
+      name="brand"
+      placeholder="brand of liquor"
+      ng-model="ctrl.brand"
+    /><br />
+    <input
+      type="text"
+      name="type"
+      placeholder="type of liquor"
+      ng-model="ctrl.type"
+    /><br />
+    <input
+      type="number"
+      name="abv"
+      placeholder="alcohol by volume"
+      ng-model="ctrl.abv"
+    /><br />
+    <input type="submit" value="add beverage" />
+  </form>
+</section>
