@@ -19,6 +19,7 @@ app.controller(`MyController`, [
         (res) => {
           console.log(this.res);
           this.getDrinks();
+          this.indexOfDrinksToShow = null;
         },
         (err) => {
           console.log(err);
